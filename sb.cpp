@@ -17,7 +17,6 @@ using namespace std;
 sb::sb(size_t n, size_t d, vector<vector<double>> m) {
     this->n = n;
     this->d = d;
-    //static_assert(m.size()>0,"No dimension...");
     cout<<"matrix m's dimensions: "<<m.size()<<endl;
     this->m = m;
 }
@@ -29,7 +28,7 @@ sb::~sb() {
 
 double sb::dist(size_t p1, size_t p2){
     double sum = 0.0, diff;
-    for(size_t i; i<d; i++){     
+    for(size_t i; i<d; i++){
         diff = m[p1][i] - m[p2][i];
         sum += diff*diff;
     }

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
 #include "csv_v3.h"
 #include "sb.h"
 
@@ -19,20 +20,28 @@
 using namespace std;
 
 void test_2d() {
+    const size_t d = 2;
+    vector<vector<double>> x;
     io::CSVReader<2> in("./tests/test_data.csv");
     double x1; double x2;
-    while(in.read_row(x1, x2)){
-        // do stuff with the data
-        cout<<x1<<" "<<x2<<" \n";
-    }
-    std::cout << "NN_Test reading CSV File" << std::endl;
+    size_t n = 0;
+    while(in.read_row(x1, x2)){ x.push_back(vector<double>{x1,x2}); }
+    cout<<"NN_Test reading CSV File"<<endl;
+    cout<<x.size()<<" lines read"<<endl;
+    sb s1(x.size(),d,x); //declaration
+    cout<<"distance between p0 and p1: "<<s1.dist(0,1)<<endl;
 }
 
 void test_4d(size_t n,size_t d) {
+    mt19937 r;
+    uint32_t seed_val = 1;
+    r.seed(seed_val);
+    normal_distribution<double> normal_dist(0.0, 1.0);
+    
     vector<vector<double>> x(n,vector<double>(d));
     for(int i=0;i<n;i++){
         for(int j=0;j<d;j++){
-            x[i][j] = 0.0;
+            x[i][j] = normal_dist(r);
         }
     }
     for(int i=0;i<n;i++){
