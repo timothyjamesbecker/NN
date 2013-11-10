@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include "csv_v3.h"
+#include "sb.h"
 
 /*
  * Simple C++ Test Suite
@@ -26,8 +27,16 @@ void test_2d() {
     std::cout << "NN_Test reading CSV File" << std::endl;
 }
 
-void test_3d() {
-    
+void test_4d() {
+    matrix<double,4,4> x;
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            x[i][j] = (double);
+        }
+    }
+    for(int i=0;i<4;i++){
+        cout<<x[i][0]<<" "<<x[i][1]<<" "<<x[i][2]<<" "<<x[i][3]<<endl;
+    }
 }
 
 int main(int argc, char** argv) {
@@ -37,6 +46,6 @@ int main(int argc, char** argv) {
     std::cout << "%TEST_STARTED% test1 (NN_Test)" << std::endl;
     test_2d();
     std::cout << "%TEST_FINISHED% time=0 test_2d (NN_Test)" << std::endl;
-
+    test_4d();
     std::cout << "%SUITE_FINISHED% time=0" << std::endl;
 }
