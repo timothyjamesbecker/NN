@@ -28,6 +28,12 @@ void test_2d() {
     while(in.read_row(x1, x2)){ x.push_back(vector<double>{x1,x2}); }
     cout<<"NN_Test reading CSV File"<<endl;
     cout<<x.size()<<" lines read"<<endl;
+    for(size_t i=0; i<x.size(); i++){
+        for(size_t j=0; j<d; j++){
+            cout<<x[i][j]<<" ";
+        }
+        cout<<endl;
+    }
     sb s1(x.size(),d,x); //declaration
     cout<<"distance between p0 and p1: "<<s1.dist(0,1)<<endl;
 }
@@ -39,13 +45,13 @@ void test_4d(size_t n,size_t d) {
     normal_distribution<double> normal_dist(0.0, 1.0);
     
     vector<vector<double>> x(n,vector<double>(d));
-    for(int i=0;i<n;i++){
-        for(int j=0;j<d;j++){
+    for(size_t i=0;i<n;i++){
+        for(size_t j=0;j<d;j++){
             x[i][j] = normal_dist(r);
         }
     }
-    for(int i=0;i<n;i++){
-        for(int j=0;j<d;j++){
+    for(size_t i=0;i<n;i++){
+        for(size_t j=0;j<d;j++){
             cout<<x[i][j]<<" ";
         }
         cout<<endl;
