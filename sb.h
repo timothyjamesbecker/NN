@@ -6,22 +6,21 @@
  */
 #ifndef sb_H
 #define	sb_H
-#include <array>
+#include <vector>
 
 using namespace std;
 
-template <class T, unsigned I, unsigned J>
-using matrix = array<array<T, J>, I>;
-
 class sb {
 public:
-    sb();
-    sb(const sb& orig);
-    virtual ~sb();
-    double dist(matrix<double,1,4> i, matrix<double,1,4> j);
-    matrix<double,1,4> minimum(matrix<double,2,4>);
+    sb(size_t n, size_t d, vector<vector<double>> m); //standard constructor
+    sb(const sb&); //copy constructor
+    virtual ~sb(); //destructor
+    double dist(size_t p1, size_t p2);
+    vector<double> minimum(vector<vector<double>> s);
 private:
-    
+    size_t n;
+    size_t d;
+    vector<vector<double>> m;
 };
 
 #endif	/* sb_H */
