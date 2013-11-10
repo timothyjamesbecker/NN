@@ -5,7 +5,7 @@
  * Created on November 4, 2013, 8:47 PM
  */
 
-#include "NN.h"
+#include "sb.h"
 
 sb::sb() {
 }

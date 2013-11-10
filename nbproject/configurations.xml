@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>NN.h</itemPath>
       <itemPath>csv_v3.h</itemPath>
+      <itemPath>sb.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,6 +17,7 @@
                    projectFiles="true">
       <itemPath>NN.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>sb.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -78,6 +80,10 @@
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sb.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -126,6 +132,10 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>

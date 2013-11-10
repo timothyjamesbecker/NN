@@ -5,8 +5,8 @@
  * Created on November 4, 2013, 8:47 PM
  */
 
-#ifndef SB_H
-#define	SB_H
+#ifndef sb_H
+#define	sb_H
 
 class sb {
 public:
@@ -17,5 +17,5 @@ private:
 
 };
 
-#endif	/* SB_H */
+#endif	/* sb_H */
 
