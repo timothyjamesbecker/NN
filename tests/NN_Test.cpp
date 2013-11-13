@@ -22,19 +22,15 @@ void test_2d() {
     double x1; double x2;
     size_t n = 0;
     while(in.read_row(x1, x2)){ x.push_back(vector<double>{x1,x2}); }
-    sb s1(x.size(),d,x); //declaration
+    SB sb(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
-    cout<<s.size()<<" lines read"<<endl;
-    for(size_t i=0; i<x.size(); i++){
-        for(size_t j=0; j<d; j++){
-            cout<<x[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    sb s1(x.size(),d,x); //declaration
-    //cout<<"value for p0 "<<p0<<s1.print_point(p0)<<endl;
-    //cout<<"value for p1 "<<p1<<s1.print_point(p1)<<endl;
-    cout<<"distance between p0 and p1: "<<s1.dist(p0,p1)<<endl;
+    cout<<sb.size()<<" lines read"<<endl;
+    sb.print_matrix();
+    cout<<"value for p"<<p0<<": ";
+    sb.print_point(p0);
+    cout<<"value for p"<<p1<<": ";
+    sb.print_point(p1);
+    cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
 }
 
 void test_4d(size_t n,size_t d) {

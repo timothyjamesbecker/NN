@@ -10,16 +10,17 @@
 
 using namespace std;
 
-class sb {
+class SB {
 public:
-    sb(const size_t n, const size_t d, const vector<vector<double>> m);
-    sb(const sb&); //copy constructor
-    virtual ~sb(); //destructor
+    SB(const size_t n, const size_t d, const vector<vector<double>> m);
+    SB(const SB&); //copy constructor
+    virtual ~SB(); //destructor
     double dist(size_t p1, size_t p2);
     vector<double> get_point(size_t p1);
     vector<double> minimum(vector<vector<double>> s);
     size_t size();
-    void print_point(size_t p1);
+    void print_matrix();
+    void print_point(const size_t p1);
 private:
     size_t n;
     size_t d;
