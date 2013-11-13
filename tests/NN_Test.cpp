@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include "c11timer.hpp"
 #include "csv_v3.hpp"
 #include "sb.h"
 
@@ -51,6 +52,7 @@ void test_4d(size_t n,size_t d) {
 
 int main(int argc, char** argv) {
     cout << "%SUITE_STARTING% NN_Test" << endl;
+    
     cout << "%SUITE_STARTED%" << endl<<endl;
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     test_2d();

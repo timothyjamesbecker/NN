@@ -14,8 +14,12 @@ public:
     RT_Stats();
     RT_Stats(const RT_Stats&);
     virtual ~RT_Stats();
-private:
-    auto
+private:/*
+    auto min
+    auto max
+    auto sum
+    auto ave
+    auto var*/
 };
 
 #endif	/* RUNNING_STATS_HPP */

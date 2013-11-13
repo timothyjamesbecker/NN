@@ -4,11 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>c11timer.hpp</itemPath>
       <itemPath>csv_v3.hpp</itemPath>
       <itemPath>nn.h</itemPath>
       <itemPath>rt_stats.hpp</itemPath>
       <itemPath>sb.h</itemPath>
-      <itemPath>timer.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -59,6 +59,8 @@
           <commandLine>-lpthread</commandLine>
         </linkerTool>
       </compileType>
+      <item path="c11timer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -89,8 +91,6 @@
       <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="timer.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -116,6 +116,8 @@
           <architecture>2</architecture>
         </asmTool>
       </compileType>
+      <item path="c11timer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -146,8 +148,6 @@
       <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="timer.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
