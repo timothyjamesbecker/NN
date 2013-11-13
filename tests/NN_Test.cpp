@@ -16,7 +16,7 @@
 using namespace std;
 
 void test_2d() {
-    const size_t d = 2, p0 = 0, p1 = 1;
+    const size_t d = 2, p0 = 3, p1 = 2;
     vector<vector<double>> x;
     io::CSVReader<2> in("./tests/test_data.csv");
     double x1; double x2;
@@ -25,11 +25,7 @@ void test_2d() {
     SB sb(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
     cout<<sb.size()<<" lines read"<<endl;
-    sb.print_matrix();
-    cout<<"value for p"<<p0<<": ";
-    sb.print_point(p0);
-    cout<<"value for p"<<p1<<": ";
-    sb.print_point(p1);
+    //sb.print_matrix();
     cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
 }
 
@@ -54,12 +50,12 @@ void test_4d(size_t n,size_t d) {
 }
 
 int main(int argc, char** argv) {
-    std::cout << "%SUITE_STARTING% NN_Test" << std::endl;
-    std::cout << "%SUITE_STARTED%" << std::endl;
-
-    std::cout << "%TEST_STARTED% test1 (NN_Test)" << std::endl;
+    cout << "%SUITE_STARTING% NN_Test" << endl;
+    cout << "%SUITE_STARTED%" << endl<<endl;
+    cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     test_2d();
-    std::cout << "%TEST_FINISHED% time=0 test_2d (NN_Test)" << std::endl;
+    cout<<endl;
+    cout << "%TEST_FINISHED% time=0 test_2d (NN_Test)" << endl;
     test_4d(4,5);
-    std::cout << "%SUITE_FINISHED% time=0" << std::endl;
+    cout << "%SUITE_FINISHED% time=0" << endl;
 }

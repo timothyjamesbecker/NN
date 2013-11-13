@@ -28,7 +28,9 @@ SB::~SB() {
 
 double SB::dist(size_t p1, size_t p2){
     double sum = 0.0, diff = 0.0;
-    for(size_t i; i<d; i++){
+    print_point(p1);
+    print_point(p2);
+    for(size_t i=0; i<d; i++){
         diff = m[p1][i] - m[p2][i];
         sum += diff*diff;
     }
@@ -52,6 +54,7 @@ void SB::print_matrix(){
 }
 
 void SB::print_point(const size_t p1){
+    cout<<"value for p"<<p1<<": ";
     for(auto &i:m[p1]){ cout<<i<<" "; }
     cout<<endl;
 }
