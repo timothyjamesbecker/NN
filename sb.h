@@ -7,6 +7,7 @@
 #ifndef sb_H
 #define	sb_H
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -18,14 +19,17 @@ public:
     double dist(size_t p1, size_t p2);
     vector<double> all_dist(size_t p);
     vector<double> get_point(size_t p);
-    vector<double> minimum(size_t p);
+    vector<double>::iterator min_dist(size_t p);
+    vector<double>::iterator max_dist(size_t p);
     size_t size();
     void print_matrix();
     void print_point(const size_t p);
 private:
-    size_t n;
-    size_t d;
-    vector<vector<double>> m;
+    size_t n; //number of rows/instances/points in the data set
+    size_t d; //number of dimensions for NN/RNN searching
+    mt19937_64 r; //needed for random number generation
+    uniform_int_distribution<size_t> sample;
+    vector<vector<double>> m; //orginal data to read from
 };
 
 #endif	/* sb_H */

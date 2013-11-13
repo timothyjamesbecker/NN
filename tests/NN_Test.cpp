@@ -26,18 +26,15 @@ void test_2d() {
     SB sb(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
     cout<<sb.size()<<" lines read"<<endl;
-    //sb.print_matrix();
     cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
     auto D = sb.all_dist(p0);
-    cout<<"all distances from p0 to P\\p0:"<endl;
+    cout<<"all distances from p0 to P\\p0:"<<endl;
     for(auto &i: D){ cout<<i<<endl; }
-    count
 }
 
 void test_4d(size_t n,size_t d) {
-    mt19937 r;
-    uint32_t seed_val = 1;
-    r.seed(seed_val);
+    mt19937_64 r;
+    r.seed(1);
     normal_distribution<double> normal_dist(0.0, 1.0);
     
     vector<vector<double>> x(n,vector<double>(d));
