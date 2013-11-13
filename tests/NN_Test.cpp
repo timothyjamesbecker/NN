@@ -11,23 +11,20 @@
 #include <vector>
 #include <random>
 #include "csv_v3.h"
-#include "sb.h"
-
-/*
- * Simple C++ Test Suite
- */
+#include "SB.h"
 
 using namespace std;
 
 void test_2d() {
-    const size_t d = 2;
+    const size_t d = 2, p0 = 0, p1 = 1;
     vector<vector<double>> x;
     io::CSVReader<2> in("./tests/test_data.csv");
     double x1; double x2;
     size_t n = 0;
     while(in.read_row(x1, x2)){ x.push_back(vector<double>{x1,x2}); }
+    sb s1(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
-    cout<<x.size()<<" lines read"<<endl;
+    cout<<s.size()<<" lines read"<<endl;
     for(size_t i=0; i<x.size(); i++){
         for(size_t j=0; j<d; j++){
             cout<<x[i][j]<<" ";
@@ -35,7 +32,9 @@ void test_2d() {
         cout<<endl;
     }
     sb s1(x.size(),d,x); //declaration
-    cout<<"distance between p0 and p1: "<<s1.dist(0,1)<<endl;
+    //cout<<"value for p0 "<<p0<<s1.print_point(p0)<<endl;
+    //cout<<"value for p1 "<<p1<<s1.print_point(p1)<<endl;
+    cout<<"distance between p0 and p1: "<<s1.dist(p0,p1)<<endl;
 }
 
 void test_4d(size_t n,size_t d) {

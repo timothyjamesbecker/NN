@@ -5,8 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>NN.h</itemPath>
+      <itemPath>SB.h</itemPath>
       <itemPath>csv_v3.h</itemPath>
-      <itemPath>sb.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,8 +16,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>NN.cpp</itemPath>
+      <itemPath>SB.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>sb.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -61,6 +61,10 @@
       </item>
       <item path="NN.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SB.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="csv_v3.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -79,10 +83,6 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -114,6 +114,10 @@
       </item>
       <item path="NN.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SB.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="csv_v3.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -132,10 +136,6 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>
