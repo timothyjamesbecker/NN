@@ -26,10 +26,12 @@ void test_2d() {
     SB sb(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
     cout<<sb.size()<<" lines read"<<endl;
-    cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
-    auto D = sb.all_dist(p0);
-    cout<<"all distances from p0 to P\\p0:"<<endl;
-    for(auto &i: D){ cout<<i<<endl; }
+    //cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
+    //auto D = sb.all_dist(p0);
+    //cout<<"all distances from p0 to P\\p0:"<<endl;
+    //for(auto &i: D){ cout<<i<<endl; }
+    vector<size_t> P = sb.permute_points();
+    for(auto &i:P){ sb.print_point(i); }
 }
 
 void test_4d(size_t n,size_t d) {

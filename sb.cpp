@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <vector>
 #include <cmath>
+#include <cstdlib>
 #include <random>
 #include "c11timer.h"
 #include "SB.h"
@@ -20,13 +21,6 @@ SB::SB(const size_t n, const size_t d, const vector<vector<double>> m) {
     this->n = n;
     this->d = d;
     this->m = m;
-    
-    auto t0 = chrono::_V2::steady_clock::now();
-    this->r.seed((size_t)t0.time_since_epoch().count());
-    
-    uniform_int_distribution<size_t> i(0,this->n-1);
-    this->sample = i;
-    
     cout<<"matrix m's dimensions: "<<m.size()<<endl;
 }
 
@@ -62,6 +56,27 @@ vector<double>::iterator SB::min_dist(size_t p){
 vector<double>::iterator SB::max_dist(size_t p){
     vector<double> D = all_dist(p);
     return std::max_element(begin(D),end(D));
+}
+
+int SB::gen(int m){ return rand()%m; }
+
+size_t SB::r_gen(size_t m){
+    auto t0 = chrono::_V2::steady_clock::now();
+    this->r.seed((size_t)t0.time_since_epoch().count());
+    uniform_int_distribution<size_t> pos_ran_int(0,m-1);
+    return pos_ran_int(r);
+}
+
+vector<size_t> SB::permute_points(){
+    auto t0 = chrono::_V2::steady_clock::now();
+    unsigned seed = (size_t)t0.time_since_epoch().count();
+    
+    vector<size_t> p(n),q;
+    for(size_t i=0;i<n;i++){ p[i] = i; }
+    size_t m = n;
+    //for(size_t i=0; i<n; i++){ q.push_back(r_gen(m--)); }
+    random_shuffle(p.begin(),p.end());
+    return p;
 }
 
 size_t SB::size(){ return m.size(); }

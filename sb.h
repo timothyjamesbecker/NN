@@ -21,6 +21,9 @@ public:
     vector<double> get_point(size_t p);
     vector<double>::iterator min_dist(size_t p);
     vector<double>::iterator max_dist(size_t p);
+    int gen(int m);
+    size_t r_gen(size_t m);
+    vector<size_t> permute_points();
     size_t size();
     void print_matrix();
     void print_point(const size_t p);
@@ -28,7 +31,6 @@ private:
     size_t n; //number of rows/instances/points in the data set
     size_t d; //number of dimensions for NN/RNN searching
     mt19937_64 r; //needed for random number generation
-    uniform_int_distribution<size_t> sample;
     vector<vector<double>> m; //orginal data to read from
 };
 
