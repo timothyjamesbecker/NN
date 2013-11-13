@@ -36,20 +36,17 @@ double SB::dist(size_t p1, size_t p2){
     return (double)sqrt(sum);
 }
 
-vector<double> SB::all_dist(size_t p1){
+vector<double> SB::all_dist(size_t p){
     vector<double> x(n-1,0.0);
     for(int i=0;i<n;i++){
-        if(p1 != i){ x[i] = dist(p1,i); }
+        if(p != i){ x[i] = dist(p,i); }
     }
     return x;
 }
 
-vector<double> SB::get_point(size_t p1){ return m[p1]; }
+vector<double> SB::get_point(size_t p){ return m[p]; }
 
-vector<double> SB::minimum(vector<vector<double>> s){
-    vector<double> x = {1.0,2.0,3.0};
-    return x;
-}
+vector<double> SB::minimum(size_t p){ return min(all_dist(p)); }
 
 size_t SB::size(){ return m.size(); }
 
@@ -60,8 +57,8 @@ void SB::print_matrix(){
     }
 }
 
-void SB::print_point(const size_t p1){
-    cout<<"value for p"<<p1<<": ";
-    for(auto &i:m[p1]){ cout<<i<<" "; }
+void SB::print_point(const size_t p){
+    cout<<"value for p"<<p<<": ";
+    for(auto &i:m[p]){ cout<<i<<" "; }
     cout<<endl;
 }

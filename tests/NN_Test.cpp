@@ -28,6 +28,10 @@ void test_2d() {
     cout<<sb.size()<<" lines read"<<endl;
     //sb.print_matrix();
     cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
+    auto D = sb.all_dist(p0);
+    cout<<"all distances from p0 to P\\p0:"<endl;
+    for(auto &i: D){ cout<<i<<endl; }
+    count
 }
 
 void test_4d(size_t n,size_t d) {

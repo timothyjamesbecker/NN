@@ -16,12 +16,12 @@ public:
     SB(const SB&); //copy constructor
     virtual ~SB(); //destructor
     double dist(size_t p1, size_t p2);
-    vector<double> all_dist(size_t p1);
-    vector<double> get_point(size_t p1);
-    vector<double> minimum(vector<vector<double>> s);
+    vector<double> all_dist(size_t p);
+    vector<double> get_point(size_t p);
+    vector<double> minimum(size_t p);
     size_t size();
     void print_matrix();
-    void print_point(const size_t p1);
+    void print_point(const size_t p);
 private:
     size_t n;
     size_t d;
