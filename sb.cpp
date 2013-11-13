@@ -17,49 +17,76 @@
 
 using namespace std;
 
-SB::SB(const size_t n, const size_t d, const vector<vector<double>> m) {
+/*SB constructor
+ * n - # of data rows/instances/points
+ * d - # of dimensions (Clarkson uses 33 and was computing with 32-bit floats
+ * data - the data input matrix (using vector of vector of doubles for now
+ */
+SB::SB(const size_t n, const size_t d, const vector<vector<double>> data) {
     this->n = n;
     this->d = d;
-    this->m = m;
-    cout<<"matrix m's dimensions: "<<m.size()<<endl;
+    this->data = data;
+    cout<<"matrix m's dimensions: "<<data.size()<<endl;
 }
 
 SB::SB(const SB&){}
 
-SB::~SB() {
-}
+SB::~SB() {}
 
+/*Euclidian Distance Function, will make more of these, etc
+ * p1 - the first data element
+ * p2 - the second data element
+ * returns the euclidian distance from p1 to p2
+ */
 double SB::dist(size_t p1, size_t p2){
     double sum = 0.0, diff = 0.0;
     for(size_t i=0; i<d; i++){
-        diff = m[p1][i] - m[p2][i];
+        diff = data[p1][i] - data[p2][i];
         sum += diff*diff;
     }
     return (double)sqrt(sum);
 }
 
+/*Given p: computes all distances in P\p
+ * will change this to pass a dist function as a param
+ */
 vector<double> SB::all_dist(size_t p){
-    vector<double> x;
+    vector<double> q;
     for(size_t i=0;i<n;i++){
-        if(p != i){ x.push_back(dist(p,i)); }
+        if(p != i){ q.push_back(dist(p,i)); }
     }
-    return x;
+    return q;
+}
+/*Computes for every point pi, the distance to
+ * every other point: P\pi returning the result
+ */
+vector<vector<double>> SB::all_points_all_dist(){
+    /*vector<vector<double>> Q(n);
+    for(auto &p:this->data){
+    vector<double> q(n-1);*/
 }
 
-vector<double> SB::get_point(size_t p){ return m[p]; }
+/*Gives the point of some index*/
+vector<double> SB::get_point(size_t p){ return data[p]; }
 
+/*Computes and returns to closest element in P\p to p*/
 vector<double>::iterator SB::min_dist(size_t p){
     vector<double> D = all_dist(p);
     return std::min_element(begin(D),end(D));
 }
 
+/*Computes and returns to furthest element in P\p to p*/
 vector<double>::iterator SB::max_dist(size_t p){
     vector<double> D = all_dist(p);
     return std::max_element(begin(D),end(D));
 }
 
+/*old-school c random generator*/
 int SB::gen(int m){ return rand()%m; }
 
+/*c++11 style Mersene-Twister engine, fancy, etc
+ * returns one random index of P
+ */
 size_t SB::r_gen(size_t m){
     auto t0 = chrono::_V2::steady_clock::now();
     this->r.seed((size_t)t0.time_since_epoch().count());
@@ -67,29 +94,43 @@ size_t SB::r_gen(size_t m){
     return pos_ran_int(r);
 }
 
+/*Given P: randomly selects a permutation of the indecies
+ * and returns these as a vector<size_t>
+ */
 vector<size_t> SB::permute_points(){
-    auto t0 = chrono::_V2::steady_clock::now();
-    unsigned seed = (size_t)t0.time_since_epoch().count();
+    //auto t0 = chrono::_V2::steady_clock::now();            //put MT back here
+    //unsigned seed = (size_t)t0.time_since_epoch().count(); //inside the shuffle
     
     vector<size_t> p(n),q;
     for(size_t i=0;i<n;i++){ p[i] = i; }
     size_t m = n;
-    //for(size_t i=0; i<n; i++){ q.push_back(r_gen(m--)); }
-    random_shuffle(p.begin(),p.end());
+    random_shuffle(p.begin(),p.end()); //third argument is a random engine?
     return p;
 }
 
-size_t SB::size(){ return m.size(); }
+/* Given an index i, reforms the max_heap for P[i]
+ * This is needed when new elements are added
+ * and the data inside this vector can grow stale
+ */
+void SB::make_max_heap(size_t i){
+    vector<vector<double>> h = dist_heaps;
+    make_heap(h[i].begin(),h[i].end());
+}
 
+/*simple total data size*/
+size_t SB::size(){ return data.size(); }
+
+/*basic display functinality*/
 void SB::print_matrix(){
-    for(auto &row:m){
+    for(auto &row:data){
         for(auto &i:row){ cout<<i<<" "; }
         cout<<endl;
     }
 }
 
+/*basic display functionality*/
 void SB::print_point(const size_t p){
-    cout<<"value for p"<<p<<": ";
-    for(auto &i:m[p]){ cout<<i<<" "; }
+    cout<<"p"<<p<<": ";
+    for(auto &i:data[p]){ cout<<i<<" "; }
     cout<<endl;
 }

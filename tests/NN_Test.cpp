@@ -32,6 +32,7 @@ void test_2d() {
     //for(auto &i: D){ cout<<i<<endl; }
     vector<size_t> P = sb.permute_points();
     for(auto &i:P){ sb.print_point(i); }
+    
 }
 
 void test_4d(size_t n,size_t d) {
