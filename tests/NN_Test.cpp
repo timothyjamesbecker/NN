@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 #include <random>
-#include "csv_v3.h"
-#include "SB.h"
+#include "csv_v3.hpp"
+#include "sb.h"
 
 using namespace std;
 

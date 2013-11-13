@@ -12,7 +12,7 @@ using namespace std;
 
 class SB {
 public:
-    SB(const size_t n, const size_t d, const vector<vector<double>> m);
+    SB(const size_t n, const size_t d, const vector<vector<double>> m); //constructor
     SB(const SB&); //copy constructor
     virtual ~SB(); //destructor
     double dist(size_t p1, size_t p2);

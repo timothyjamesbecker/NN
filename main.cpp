@@ -12,7 +12,7 @@
 using namespace std;
 
 /*
- * Main NN Program with arguments
+ * main nn command line program with arguments
  */
 int main(int argc, char** argv) {
     string csv_in_file(argv[0]); //argv[0] is the program name, 1+ is args

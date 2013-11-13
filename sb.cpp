@@ -1,16 +1,15 @@
 /* 
- * File:   SB.cpp
+ * File:   sb.cpp
  * Author: tbecker
  * 
  * Created on November 4, 2013, 8:47 PM
  */
 
-#include "SB.h"
 #include <type_traits>
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <omp.h>
+#include "SB.h"
 
 using namespace std;
 

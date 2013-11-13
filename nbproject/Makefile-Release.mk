@@ -35,9 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/NN.o \
-	${OBJECTDIR}/SB.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/nn.o \
+	${OBJECTDIR}/sb.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -70,20 +70,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nn ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/NN.o: nbproject/Makefile-${CND_CONF}.mk NN.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/NN.o NN.cpp
-
-${OBJECTDIR}/SB.o: nbproject/Makefile-${CND_CONF}.mk SB.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/SB.o SB.cpp
-
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/nn.o: nbproject/Makefile-${CND_CONF}.mk nn.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/nn.o nn.cpp
+
+${OBJECTDIR}/sb.o: nbproject/Makefile-${CND_CONF}.mk sb.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/sb.o sb.cpp
 
 # Subprojects
 .build-subprojects:
@@ -101,32 +101,6 @@ ${TESTDIR}/tests/NN_Test.o: tests/NN_Test.cpp
 	$(COMPILE.cc) -O2 -I. -std=c++11 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/NN_Test.o tests/NN_Test.cpp
 
 
-${OBJECTDIR}/NN_nomain.o: ${OBJECTDIR}/NN.o NN.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/NN.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} $@.d;\
-	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/NN_nomain.o NN.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/NN.o ${OBJECTDIR}/NN_nomain.o;\
-	fi
-
-${OBJECTDIR}/SB_nomain.o: ${OBJECTDIR}/SB.o SB.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/SB.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} $@.d;\
-	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/SB_nomain.o SB.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/SB.o ${OBJECTDIR}/SB_nomain.o;\
-	fi
-
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/main.o`; \
@@ -138,6 +112,32 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/main_nomain.o main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
+	fi
+
+${OBJECTDIR}/nn_nomain.o: ${OBJECTDIR}/nn.o nn.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/nn.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/nn_nomain.o nn.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/nn.o ${OBJECTDIR}/nn_nomain.o;\
+	fi
+
+${OBJECTDIR}/sb_nomain.o: ${OBJECTDIR}/sb.o sb.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/sb.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/sb_nomain.o sb.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/sb.o ${OBJECTDIR}/sb_nomain.o;\
 	fi
 
 # Run Test Targets

@@ -4,9 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>CSV_V3.hpp</itemPath>
-      <itemPath>NN.h</itemPath>
-      <itemPath>SB.h</itemPath>
+      <itemPath>csv_v3.hpp</itemPath>
+      <itemPath>nn.h</itemPath>
+      <itemPath>rt_stats.hpp</itemPath>
+      <itemPath>sb.h</itemPath>
       <itemPath>timer.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -16,9 +17,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>NN.cpp</itemPath>
-      <itemPath>SB.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>nn.cpp</itemPath>
+      <itemPath>sb.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -58,15 +59,7 @@
           <commandLine>-lpthread</commandLine>
         </linkerTool>
       </compileType>
-      <item path="CSV_V3.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="NN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="NN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SB.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SB.h" ex="false" tool="3" flavor2="0">
+      <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -84,6 +77,16 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rt_stats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -113,15 +116,7 @@
           <architecture>2</architecture>
         </asmTool>
       </compileType>
-      <item path="CSV_V3.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="NN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="NN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SB.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SB.h" ex="false" tool="3" flavor2="0">
+      <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -139,6 +134,16 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rt_stats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sb.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/NN_Test.cpp" ex="false" tool="1" flavor2="0">
       </item>
