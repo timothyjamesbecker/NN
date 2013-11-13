@@ -10,9 +10,9 @@
 #include <string>
 #include <vector>
 #include <random>
-#include "c11timer.hpp"
 #include "csv_v3.hpp"
 #include "sb.h"
+#include "c11timer.h"
 
 using namespace std;
 
@@ -51,13 +51,16 @@ void test_4d(size_t n,size_t d) {
 }
 
 int main(int argc, char** argv) {
+    C11Timer t;
+    cout<<endl;
     cout << "%SUITE_STARTING% NN_Test" << endl;
-    
     cout << "%SUITE_STARTED%" << endl<<endl;
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
+    t.ping();
     test_2d();
+    t.ping();
     cout<<endl;
-    cout << "%TEST_FINISHED% time=0 test_2d (NN_Test)" << endl;
+    cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;
     test_4d(4,5);
     cout << "%SUITE_FINISHED% time=0" << endl;
 }

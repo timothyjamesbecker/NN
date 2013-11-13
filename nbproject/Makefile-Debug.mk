@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/c11timer.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/nn.o \
 	${OBJECTDIR}/sb.o
@@ -70,6 +71,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nn ${OBJECTFILES} ${LDLIBSOPTIONS} -lpthread
 
+${OBJECTDIR}/c11timer.o: nbproject/Makefile-${CND_CONF}.mk c11timer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/c11timer.o c11timer.cpp
+
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -100,6 +106,19 @@ ${TESTDIR}/tests/NN_Test.o: tests/NN_Test.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I. -std=c++11 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/NN_Test.o tests/NN_Test.cpp
 
+
+${OBJECTDIR}/c11timer_nomain.o: ${OBJECTDIR}/c11timer.o c11timer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/c11timer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/c11timer_nomain.o c11timer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/c11timer.o ${OBJECTDIR}/c11timer_nomain.o;\
+	fi
 
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

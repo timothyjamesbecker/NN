@@ -4,7 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>c11timer.hpp</itemPath>
+      <itemPath>c11timer.cpp</itemPath>
+      <itemPath>c11timer.h</itemPath>
       <itemPath>csv_v3.hpp</itemPath>
       <itemPath>nn.h</itemPath>
       <itemPath>rt_stats.hpp</itemPath>
@@ -59,7 +60,9 @@
           <commandLine>-lpthread</commandLine>
         </linkerTool>
       </compileType>
-      <item path="c11timer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="c11timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="c11timer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -116,7 +119,9 @@
           <architecture>2</architecture>
         </asmTool>
       </compileType>
-      <item path="c11timer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="c11timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="c11timer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="csv_v3.hpp" ex="false" tool="3" flavor2="0">
       </item>

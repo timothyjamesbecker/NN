@@ -16,6 +16,7 @@ public:
     SB(const SB&); //copy constructor
     virtual ~SB(); //destructor
     double dist(size_t p1, size_t p2);
+    vector<double> all_dist(size_t p1);
     vector<double> get_point(size_t p1);
     vector<double> minimum(vector<vector<double>> s);
     size_t size();

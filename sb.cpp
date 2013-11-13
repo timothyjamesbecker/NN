@@ -36,6 +36,14 @@ double SB::dist(size_t p1, size_t p2){
     return (double)sqrt(sum);
 }
 
+vector<double> SB::all_dist(size_t p1){
+    vector<double> x(n-1,0.0);
+    for(int i=0;i<n;i++){
+        if(p1 != i){ x[i] = dist(p1,i); }
+    }
+    return x;
+}
+
 vector<double> SB::get_point(size_t p1){ return m[p1]; }
 
 vector<double> SB::minimum(vector<vector<double>> s){
