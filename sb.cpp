@@ -27,6 +27,7 @@ SB::SB(const size_t n, const size_t d, const vector<vector<double>> data) {
     this->d = d;
     this->data = data;
     this->dist_heaps = all_points_all_dist();
+    for(size_t i=0; i<n; i++){ make_max_heap(i); }
     cout<<"matrix m's dimensions: "<<data.size()<<endl;
 }
 
@@ -62,8 +63,8 @@ vector<double> SB::all_dist(size_t p){
  * every other point: P\pi returning the result
  */
 vector<vector<double>> SB::all_points_all_dist(){
-    vector<vector<double>> Q(n);
-    for(size_t i=0; i<n; i++){ Q[i] = all_dist(i); }
+    vector<vector<double>> Q;
+    for(size_t i=0; i<n; i++){ Q.push_back(all_dist(i)); }
     return Q;
 }
 
@@ -114,19 +115,31 @@ vector<size_t> SB::permute_points(){
  * and the data inside this vector can grow stale
  */
 void SB::make_max_heap(size_t i){
-    vector<vector<double>> h = dist_heaps;
-    make_heap(h[i].begin(),h[i].end());
+    make_heap(dist_heaps[i].begin(),dist_heaps[i].end());
+}
+
+vector<vector<double>> SB::get_dist_heaps(){
+    vector<vector<double>> Q = SB::all_points_all_dist();
+    for(size_t i=0; i<n; i++){
+        make_heap(Q[i].begin(),Q[i].end());
+    }
+    return Q;
 }
 
 /*simple total data size*/
 size_t SB::size(){ return data.size(); }
 
 /*basic display functionality*/
-void SB::print_matrix(){
+void SB::print_data(){
     for(auto &row:data){
         for(auto &i:row){ cout<<i<<" "; }
         cout<<endl;
     }
+}
+
+void SB::print_dist_heaps(){
+    for(auto &i:dist_heaps[0]){ cout<<i<<" "; }
+    cout<<endl;
 }
 
 /*basic display functionality*/

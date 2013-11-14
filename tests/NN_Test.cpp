@@ -17,22 +17,29 @@
 using namespace std;
 
 void test_2d() {
-    const size_t d = 2, p0 = 3, p1 = 2;
+    const size_t n = 100, d= 2,p0 = 3, p1 = 2;
     vector<vector<double>> x;
-    io::CSVReader<2> in("./tests/test_data.csv");
+    io::CSVReader<d> in("./tests/test_data.csv");
     double x1; double x2;
-    size_t n = 0;
     while(in.read_row(x1, x2)){ x.push_back(vector<double>{x1,x2}); }
     SB sb(x.size(),d,x); //declaration
     cout<<"NN_Test reading CSV File"<<endl;
     cout<<sb.size()<<" lines read"<<endl;
-    //cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl;
-    //auto D = sb.all_dist(p0);
-    //cout<<"all distances from p0 to P\\p0:"<<endl;
-    //for(auto &i: D){ cout<<i<<endl; }
-    vector<size_t> P = sb.permute_points();
-    for(auto &i:P){ sb.print_point(i); }
-    
+    //cout<<"distance between p0 and p1: "<<sb.dist(p0,p1)<<endl; //distance
+    //auto D = sb.all_dist(p0);                                   //distance
+    //cout<<"all distances from p0 to P\\p0:"<<endl;              //alldist
+    //for(auto &i: D){ cout<<i<<endl; }                           //alldist
+    //vector<size_t> P = sb.permute_points();                     //permute
+    //for(auto &i:P){ sb.print_point(i); }                        //permute
+    auto D = sb.get_dist_heaps();                                    //all max-heaps
+    for(size_t i=0; i<n; i++){
+        cout<<"SB data structure: max-heap for p= :";
+        for(size_t j=0; j<n-1; j++){
+                (j%10==0)? cout<<endl<<D[i][j]<<" " : cout<<D[i][j]<<" ";
+        }
+        cout<<endl<<endl;
+    }
+    //sb.print_dist_heaps();
 }
 
 void test_4d(size_t n,size_t d) {

@@ -20,6 +20,7 @@ public:
     double dist(size_t p1, size_t p2);
     vector<double> all_dist(size_t p);
     vector<vector<double>> all_points_all_dist();
+    vector<vector<double>> get_dist_heaps();
     vector<double> get_point(size_t p);
     vector<double>::iterator min_dist(size_t p);
     vector<double>::iterator max_dist(size_t p);
@@ -28,7 +29,8 @@ public:
     vector<size_t> permute_points();
     void make_max_heap(size_t i);
     size_t size();
-    void print_matrix();
+    void print_data();
+    void print_dist_heaps();
     void print_point(const size_t p);
 private:
     size_t n; //number of rows/instances/points in the data set
