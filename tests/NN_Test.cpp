@@ -65,6 +65,6 @@ int main(int argc, char** argv) {
     t.ping();
     cout<<endl;
     cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;
-    test_4d(4,5);
+    //test_4d(4,5);
     cout << "%SUITE_FINISHED% time=0" << endl;
 }

@@ -26,6 +26,7 @@ SB::SB(const size_t n, const size_t d, const vector<vector<double>> data) {
     this->n = n;
     this->d = d;
     this->data = data;
+    this->dist_heaps = all_points_all_dist();
     cout<<"matrix m's dimensions: "<<data.size()<<endl;
 }
 
@@ -61,9 +62,9 @@ vector<double> SB::all_dist(size_t p){
  * every other point: P\pi returning the result
  */
 vector<vector<double>> SB::all_points_all_dist(){
-    /*vector<vector<double>> Q(n);
-    for(auto &p:this->data){
-    vector<double> q(n-1);*/
+    vector<vector<double>> Q(n);
+    for(size_t i=0; i<n; i++){ Q[i] = all_dist(i); }
+    return Q;
 }
 
 /*Gives the point of some index*/
@@ -120,7 +121,7 @@ void SB::make_max_heap(size_t i){
 /*simple total data size*/
 size_t SB::size(){ return data.size(); }
 
-/*basic display functinality*/
+/*basic display functionality*/
 void SB::print_matrix(){
     for(auto &row:data){
         for(auto &i:row){ cout<<i<<" "; }

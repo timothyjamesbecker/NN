@@ -16,6 +16,7 @@ public:
     SB(const size_t n, const size_t d, const vector<vector<double>> m); //constructor
     SB(const SB&); //copy constructor
     virtual ~SB(); //destructor
+    void set_dist_heaps();
     double dist(size_t p1, size_t p2);
     vector<double> all_dist(size_t p);
     vector<vector<double>> all_points_all_dist();
