@@ -33,7 +33,7 @@ void test_2d() {
     //for(auto &i:P){ sb.print_point(i); }                        //permute
     auto D = sb.get_dist_heaps();                                    //all max-heaps
     for(size_t i=0; i<n; i++){
-        cout<<"SB data structure: max-heap for p= :";
+        cout<<"SB data structure: max-heap for p="<<(i+1)<<":";
         for(size_t j=0; j<n-1; j++){
                 (j%10==0)? cout<<endl<<D[i][j]<<" " : cout<<D[i][j]<<" ";
         }
