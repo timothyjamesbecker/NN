@@ -31,13 +31,11 @@ public:
     NN(const NN& orig);
     virtual ~NN();
     double dist(size_t p1, size_t p2);
-    size_t r_gen(size_t m);
-    vector<size_t> permute_points(); 
+    vector<size_t> permute_indecies(); 
 private:
-    size_t n; //number of rows/instances/points in the data set
-    size_t d; //number of dimensions for NN/RNN searching
-    mt19937_64 r; //needed for random number generation
-    vector<size_t> p_order;
+    size_t n;     //number of rows/instances/points in the data set
+    size_t d;     //number of dimensions for NN/RNN searching
+    vector<size_t> perm_seq;
     vector<vector<double>> P; //original data to read from
     vector<cluster> centers;  //used for greedy permutation algorithm
     vector<vector<double>> dist_heaps; //one dist max_heap for every point

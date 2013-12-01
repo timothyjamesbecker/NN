@@ -15,34 +15,27 @@ NN::NN(const vector<vector<double>> P) {
     this->n = P.size();    //number of points in the set
     this->d = P[0].size(); //need the same dim
     this->P = P;           //pass the reference
-    this->p_order = permute_points(); //generate a random perm of indexes
+    this->perm_seq = permute_indecies(); //generate a random perm of indexes 
     cout<<"\nP has n="<<P.size()<<" rows\n";
     cout<<"each having d="<<P[0].size()<<" colums\n";
+    cout<<"permutation order is: ";
+    for(auto &i: perm_seq){ cout<<i<<" "; }
+    cout<<endl;
 }
 
 NN::NN(const NN& orig) {}
 
 NN::~NN() {}
 
-/*c++11 style Mersene-Twister engine, fancy, etc
- * returns one random index of P
- */
-size_t NN::r_gen(size_t m){
-    auto t0 = chrono::_V2::steady_clock::now();
-    this->r.seed((size_t)t0.time_since_epoch().count());
-    uniform_int_distribution<size_t> pos_ran_int(0,m-1);
-    return pos_ran_int(r);
-}
-
 /*Given P: randomly selects a permutation of the indecies
  * and returns these as a vector<size_t>
+ * c++11 style Mersene-Twister engine used
  */
-vector<size_t> NN::permute_points(){
-    //auto t0 = chrono::_V2::steady_clock::now();            //put MT back here
-    //unsigned seed = (size_t)t0.time_since_epoch().count(); //inside the shuffle
-    
-    vector<size_t> p(n),q;
-    for(size_t i=0;i<n;i++){ p[i] = i; }
-    random_shuffle(p.begin(),p.end()); //third argument is a random engine?
-    return p;
+vector<size_t> NN::permute_indecies(){
+    random_device rd;       //will use special RAND instruction on ivy-bridge+
+    mt19937_64 r(rd());     //get a 64-bit engine
+    vector<size_t> p(n),q;  //the permutation values
+    for(size_t i=0;i<n;i++){ p[i] = i; } //populate integers
+    shuffle(p.begin(),p.end(),r); //apply the rand engine here
+    return p;                     //pretty nice perm here
 }
