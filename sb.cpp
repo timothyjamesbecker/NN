@@ -25,7 +25,7 @@ using namespace std;
 SB::SB(const size_t n, const size_t d, const vector<vector<double>> data) {
     this->n = n;
     this->d = d;
-    this->data = data;
+    this->P = data;
     this->dist_heaps = all_points_all_dist();
     for(size_t i=0; i<n; i++){ make_max_heap(i); }
     cout<<"matrix m's dimensions: "<<data.size()<<endl;
@@ -43,7 +43,7 @@ SB::~SB() {}
 double SB::dist(size_t p1, size_t p2){
     double sum = 0.0, diff = 0.0;
     for(size_t i=0; i<d; i++){
-        diff = data[p1][i] - data[p2][i];
+        diff = P[p1][i] - P[p2][i];
         sum += diff*diff;
     }
     return (double)sqrt(sum);
@@ -69,7 +69,7 @@ vector<vector<double>> SB::all_points_all_dist(){
 }
 
 /*Gives the point of some index*/
-vector<double> SB::get_point(size_t p){ return data[p]; }
+vector<double> SB::get_point(size_t p){ return P[p]; }
 
 /*Computes and returns to closest element in P\p to p*/
 vector<double>::iterator SB::min_dist(size_t p){
@@ -127,11 +127,11 @@ vector<vector<double>> SB::get_dist_heaps(){
 }
 
 /*simple total data size*/
-size_t SB::size(){ return data.size(); }
+size_t SB::size(){ return P.size(); }
 
 /*basic display functionality*/
 void SB::print_data(){
-    for(auto &row:data){
+    for(auto &row:P){
         for(auto &i:row){ cout<<i<<" "; }
         cout<<endl;
     }
@@ -145,6 +145,6 @@ void SB::print_dist_heaps(){
 /*basic display functionality*/
 void SB::print_point(const size_t p){
     cout<<"p"<<p<<": ";
-    for(auto &i:data[p]){ cout<<i<<" "; }
+    for(auto &i:P[p]){ cout<<i<<" "; }
     cout<<endl;
 }

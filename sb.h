@@ -8,6 +8,7 @@
 #define	sb_H
 #include <vector>
 #include <random>
+#include <unordered_map>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ private:
     size_t n; //number of rows/instances/points in the data set
     size_t d; //number of dimensions for NN/RNN searching
     mt19937_64 r; //needed for random number generation
-    vector<vector<double>> data; //orginal data to read from
+    vector<vector<double>> P; //original data to read from
     vector<vector<double>> dist_heaps; //one dist max_heap for every point
 };
 

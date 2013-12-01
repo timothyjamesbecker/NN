@@ -11,6 +11,7 @@
 #include <vector>
 #include <random>
 #include "csv_v3.hpp"
+#include "nn.h"
 #include "sb.h"
 #include "c11timer.h"
 
@@ -42,23 +43,17 @@ void test_2d() {
     //sb.print_dist_heaps();
 }
 
-void test_4d(size_t n,size_t d) {
+void test_nn(size_t n, size_t d){
     mt19937_64 r;
     r.seed(1);
     normal_distribution<double> normal_dist(0.0, 1.0);
-    
     vector<vector<double>> x(n,vector<double>(d));
     for(size_t i=0;i<n;i++){
         for(size_t j=0;j<d;j++){
             x[i][j] = normal_dist(r);
         }
     }
-    for(size_t i=0;i<n;i++){
-        for(size_t j=0;j<d;j++){
-            cout<<x[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    NN data(x);  
 }
 
 int main(int argc, char** argv) {
@@ -68,10 +63,9 @@ int main(int argc, char** argv) {
     cout << "%SUITE_STARTED%" << endl<<endl;
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     t.ping();
-    test_2d();
+    test_nn(4,5);
     t.ping();
     cout<<endl;
     cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;
-    //test_4d(4,5);
     cout << "%SUITE_FINISHED% time=0" << endl;
 }
