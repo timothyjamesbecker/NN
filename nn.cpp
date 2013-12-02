@@ -15,12 +15,9 @@
 NN::NN(const vector<vector<double>> P) {
     n = P.size();    //number of points in the set
     d = P[0].size(); //need the same dim
-    k = 0;           //start empty, still have to permute to pick first 
+    k = 1;           //start empty, still have to permute to pick first 
+    for(size_t i=0; i<n; i++){ indecies.insert(i); }
     this->P = P;     //pass the reference
-    for(size_t i=0; i<n; i++){ indecies.insert(i); } //not really needed...
-    perm_seq = permute_indecies(); //generate a random perm of indexes
-    
-    //k=0 setup for first center
     first();
     print_status();
 }
@@ -42,6 +39,18 @@ vector<size_t> NN::permute_indecies(){
     for(size_t i=0;i<n;i++){ p[i] = i; } //populate integers
     shuffle(p.begin(),p.end(),r); //apply the rand engine here
     return p;                     //pretty nice perm here
+}
+
+/*c++11 style Mersene-Twister engine, fancy, etc
+ * returns one random index of P
+ */
+size_t NN::r_gen(size_t m){
+    random_device rd;       //will use special RAND instruction on ivy-bridge+
+    mt19937_64 r(rd());     //get a 64-bit engine
+    auto t0 = chrono::_V2::steady_clock::now();
+    r.seed((size_t)t0.time_since_epoch().count());
+    uniform_int_distribution<size_t> pos_ran_int(0,m-1);
+    return pos_ran_int(r);
 }
 
 /*Euclidian Distance Function, will make more of these, etc
@@ -80,7 +89,7 @@ size_t NN::max_index(const size_t q, const set<size_t> Q){
     return j;
 }
 
-//come back to later if time permits
+//come back to later if time permits uses a heap
 size_t NN::max_index2(const size_t q, const set<size_t> Q){
     size_t j = 0;
     double max = numeric_limits<double>::min();
@@ -91,6 +100,16 @@ size_t NN::max_index2(const size_t q, const set<size_t> Q){
         if(curr->second > max){ max = curr->second; j = i; }     //otherwise it was fetched
     }
     return j;
+}
+
+pair<size_t,double> NN::min_dist(const size_t q, const set<size_t> Q){
+    size_t j = 0;
+    double min = numeric_limits<double>::max(), curr = 0.0;
+    for(auto &i:Q){
+        curr = dist(q,i);
+        if(curr < min){ min = curr; j = i; }
+    }
+    return pair<size_t,double>(j,min);     
 }
 
 //returns the min dist index into P of q to set Q=subset(P)
@@ -109,27 +128,46 @@ size_t NN::min_index2(const size_t q, const set<size_t> Q){
     
 }
 
+set<size_t> NN::served(const size_t pi){
+    set<size_t> s;
+    for(size_t i = 0; i < k; i++){
+       min_dist() 
+    }
+}
+
 void NN::first(){
     center c;
-    c.i = perm_seq[k];   //k=0
+    c.i = r_gen(n);      //k=0
     c.served = indecies; //first first serves all
-    c.pip = max_index(c.i,c.served);
-    //cpj = none
-    //friends = none
-
+    c.pip = max_dist(c.i,c.served); //furthest point in cluster
+    //c.r       = update in next iteration
+    //cpj       = none ---no other-------
+    //cpj_alpha = none ---clusters yet---
+    //friends   = none ------------------
+    centers.push_back(c);   //push into the list of centers
+    is.insert(c.i);         //save the cluster index as a set
+    max_dists.push_back(c.pip);   //toss in the furthest distance
+    push_heap(max_dists.begin(),max_dists.end()); //update the max heap
+    k++;                  //update iteration counter k
 }
 
 //moves algorithm forward
 void NN::next(){
-
+    pop_heap(max_dists.begin(), max_dists.end()); //send max to end
+    pair<size_t,double> max = max_dists.back();   //grab it
+    max_dists.pop_back();                         //remove it, no duplicates!
+    center c;
+    c.i = max.first;
+    c.served = served(c.i);
+    
 }
 
 void NN::print_status(){
     //print the status to check it out
     cout<<"\nP has n="<<dim().first<<" rows\n";
     cout<<"each having d="<<dim().second<<" colums\n";
-    cout<<"permutation order is: ";
-    for(auto &i: perm_seq){ cout<<i<<" "; }
+    cout<<"first point is: ";
+    //
     cout<<endl;
 }
 
@@ -139,11 +177,6 @@ void NN::print_data(){
         for(auto &i:row){ cout<<i<<" "; }
         cout<<endl;
     }
-}
-
-void NN::print_dist_heaps(){
-    for(auto &i:dist_heaps[0]){ cout<<i<<" "; }
-    cout<<endl;
 }
 
 /*basic display functionality*/

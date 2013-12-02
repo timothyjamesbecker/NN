@@ -17,12 +17,9 @@
 using namespace std;
 
 typedef struct {
-    size_t i;            //index into the set P: P[i]
-    size_t pip;          //index into the set P: served by this cluster that is farthest
-    size_t cpj;          //index into the set P: that is the closest center
-
-    double pip_alpha;    //distance d(pi,pip)
-    double cpj_alpha;    //closest cluster center distance not including self
+    size_t i;                //index into the set P: P[i]
+    pair<size_t,double> pip; //index into the set P: served by this cluster that is farthest
+    pair<size_t,double> cpj; //index into the set P: that is the closest center
     double r,r4,r8;      //ri, 4*ri, 8*ri precomputed
     set<size_t> served;  //list of q in P that have pi as closest center
     set<size_t> friends; //list of centers that <= min{8*rk,4*ri}
@@ -58,6 +55,7 @@ public:
     virtual ~NN();
     pair<size_t,size_t> dim();
     double dist(const size_t p1, const size_t p2);
+    size_t r_gen(size_t m);
     vector<size_t> permute_indecies();
     pair<size_t,double> max_dist(const size_t q, const set<size_t> Q);
     //returns the max dist index into P of q to set Q=subset(P)
@@ -69,23 +67,21 @@ public:
     size_t min_index(const size_t q, const set<size_t> Q);
     //returns the min dist index into P of q to set Q=subset(P)
     size_t min_index2(const size_t q, const set<size_t> Q);
+    set<size_t> served(size_t pi);
     void first(); //sets the first step
-    void next(); //moves algorithm forward k++
+    void next();  //moves algorithm forward k++
     void print_status();
     void print_data();
     void print_dist_heaps();
     void print_point(const size_t p);
 private:
-    size_t n;     //number of rows/instances/points in the data set
-    size_t d;     //number of dimensions for NN/RNN searching
-    size_t k;     //iteration number <= n
-    set<size_t> indecies;  //0 to n-1
-    vector<size_t> perm_seq;  //get a random permutation on instantiation
+    size_t n,d,k;     //number of rows/instances/points in the data set
+    set<size_t> is;           // is as they are added
+    set<size_t> indecies;     // the set [0,n-1]
     vector<vector<double>> P; //original data to read from
     vector<center> centers;   //|used for greedy permutation algorithm| = k
-    vector<vector<double>> dist_heaps; //one dist max_heap for every point
-    
-    //keep all dist calculations in a fancy O(1) lookup, ins, delete heap
+    vector<pair<size_t,double>> max_dists;           //max heap for all pip_alphas
+    //keep all dist calculations in a fancy O(1) lookup, ins, delete heap ?
     unordered_map<pkey,double> comp_dists;
 };
 #endif	/* NN_H */
