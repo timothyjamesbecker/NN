@@ -18,13 +18,11 @@ using namespace std;
 
 typedef struct {
     size_t i;            //index into the set P: P[i]
-    
     size_t pip;          //index into the set P: served by this cluster that is farthest
-    double pip_alpha;    //distance d(pi,pip)
-    
     size_t cpj;          //index into the set P: that is the closest center
+
+    double pip_alpha;    //distance d(pi,pip)
     double cpj_alpha;    //closest cluster center distance not including self
-    
     double r,r4,r8;      //ri, 4*ri, 8*ri precomputed
     set<size_t> served;  //list of q in P that have pi as closest center
     set<size_t> friends; //list of centers that <= min{8*rk,4*ri}
@@ -58,17 +56,22 @@ public:
     NN(const vector<vector<double>> P);
     NN(const NN& orig);
     virtual ~NN();
-    vector<size_t> dim();
+    pair<size_t,size_t> dim();
     double dist(const size_t p1, const size_t p2);
     vector<size_t> permute_indecies();
+    pair<size_t,double> max_dist(const size_t q, const set<size_t> Q);
     //returns the max dist index into P of q to set Q=subset(P)
     size_t max_index(const size_t q, const set<size_t> Q);
         //returns the max dist index into P of q to set Q=subset(P)
     size_t max_index2(const size_t q, const set<size_t> Q);
     //returns the min dist index into P of q to set Q=subset(P)
+    pair<size_t,double> min_dist(const size_t q, const set<size_t> Q);
     size_t min_index(const size_t q, const set<size_t> Q);
     //returns the min dist index into P of q to set Q=subset(P)
     size_t min_index2(const size_t q, const set<size_t> Q);
+    void first(); //sets the first step
+    void next(); //moves algorithm forward k++
+    void print_status();
     void print_data();
     void print_dist_heaps();
     void print_point(const size_t p);
@@ -76,7 +79,7 @@ private:
     size_t n;     //number of rows/instances/points in the data set
     size_t d;     //number of dimensions for NN/RNN searching
     size_t k;     //iteration number <= n
-    vector<size_t> indecies;  //0 to n-1
+    set<size_t> indecies;  //0 to n-1
     vector<size_t> perm_seq;  //get a random permutation on instantiation
     vector<vector<double>> P; //original data to read from
     vector<center> centers;   //|used for greedy permutation algorithm| = k

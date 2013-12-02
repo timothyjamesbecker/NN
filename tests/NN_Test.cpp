@@ -70,6 +70,12 @@ void test_nn(size_t n, size_t d){
     cout<<nn.dist(q,3)<<endl;
     cout<<endl<<"max distance index"<<endl;
     cout<<nn.max_index(q,Q)<<endl;
+    
+    size_t* i;
+    size_t j = 123;
+    
+    i = &j;
+    cout<<*i<<endl;
 }
 
 /*Messing around with the unordered_map that has
@@ -155,9 +161,9 @@ int main(int argc, char** argv) {
     cout << "%SUITE_STARTED%" << endl<<endl;
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     t.ping();
-    //test_nn(4,5);
+    test_nn(4,5);
     //test_um();
-    test_set();
+    //test_set();
     t.ping();
     cout<<endl;
     cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;

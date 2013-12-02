@@ -15,26 +15,21 @@
 NN::NN(const vector<vector<double>> P) {
     n = P.size();    //number of points in the set
     d = P[0].size(); //need the same dim
-    this->P = P;           //pass the reference
-    for(size_t i=0; i<n; i++){ indecies[i] = i; }
+    k = 0;           //start empty, still have to permute to pick first 
+    this->P = P;     //pass the reference
+    for(size_t i=0; i<n; i++){ indecies.insert(i); } //not really needed...
     perm_seq = permute_indecies(); //generate a random perm of indexes
     
-    //print the output to check it out
-    cout<<"\nP has n="<<dim()[0]<<" rows\n";
-    cout<<"each having d="<<dim()[1]<<" colums\n";
-    cout<<"permutation order is: ";
-    for(auto &i: perm_seq){ cout<<i<<" "; }
-    cout<<endl;
+    //k=0 setup for first center
+    first();
+    print_status();
 }
 
 NN::NN(const NN& orig) {}
 
 NN::~NN() {}
 
-vector<size_t> NN::dim(){
-    vector<size_t> t = {n, d};
-    return t;
-}
+pair<size_t,size_t> NN::dim(){ return pair<size_t,size_t>(n,d); }
 
 /*Given P: randomly selects a permutation of the indecies
  * and returns these as a vector<size_t>
@@ -63,6 +58,16 @@ double NN::dist(const size_t p1, const size_t p2){
     return (double)sqrt(sum);
 }
 
+pair<size_t,double> NN::max_dist(const size_t q, const set<size_t> Q){
+    size_t j = 0;
+    double max = numeric_limits<double>::min(), curr = 0.0;
+    for(auto &i:Q){
+        curr = dist(q,i);
+        if(curr > max){ max = curr; j = i; }
+    }
+    return pair<size_t,double>(j,max);    
+}
+
 //returns the max dist index into P of q to set Q=subset(P)
 //this version recomputes all distances from q to subset Q
 size_t NN::max_index(const size_t q, const set<size_t> Q){
@@ -75,7 +80,7 @@ size_t NN::max_index(const size_t q, const set<size_t> Q){
     return j;
 }
 
-//come back to later if have time
+//come back to later if time permits
 size_t NN::max_index2(const size_t q, const set<size_t> Q){
     size_t j = 0;
     double max = numeric_limits<double>::min();
@@ -98,8 +103,34 @@ size_t NN::min_index(const size_t q, const set<size_t> Q){
     }
     return j;    
 }
+
+//come back later if time permits
 size_t NN::min_index2(const size_t q, const set<size_t> Q){
     
+}
+
+void NN::first(){
+    center c;
+    c.i = perm_seq[k];   //k=0
+    c.served = indecies; //first first serves all
+    c.pip = max_index(c.i,c.served);
+    //cpj = none
+    //friends = none
+
+}
+
+//moves algorithm forward
+void NN::next(){
+
+}
+
+void NN::print_status(){
+    //print the status to check it out
+    cout<<"\nP has n="<<dim().first<<" rows\n";
+    cout<<"each having d="<<dim().second<<" colums\n";
+    cout<<"permutation order is: ";
+    for(auto &i: perm_seq){ cout<<i<<" "; }
+    cout<<endl;
 }
 
 /*basic display functionality*/
