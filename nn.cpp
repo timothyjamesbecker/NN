@@ -128,38 +128,69 @@ size_t NN::min_index2(const size_t q, const set<size_t> Q){
     
 }
 
-set<size_t> NN::served(const size_t pi){
+set<size_t> NN::served(const vector<center> C){
     set<size_t> s;
-    for(size_t i = 0; i < k; i++){
-       min_dist() 
+    for(auto &l:indecies){ //each point
+        size_t t = min_dist(l,is).first;
+
     }
+    return s;
 }
 
 void NN::first(){
-    center c;
-    c.i = r_gen(n);      //k=0
-    c.served = indecies; //first first serves all
-    c.pip = max_dist(c.i,c.served); //furthest point in cluster
+    //work on a center structure------------------------------
+    center c;                     //new center point
+    size_t K = r_gen(n);          //k=1 randomly pick first point
+    c.served = indecies;          //first first serves all
+    c.pip = max_dist(K,c.served); //furthest point in cluster
     //c.r       = update in next iteration
     //cpj       = none ---no other-------
     //cpj_alpha = none ---clusters yet---
     //friends   = none ------------------
-    centers.push_back(c);   //push into the list of centers
-    is.insert(c.i);         //save the cluster index as a set
+    centers.insert(pair<size_t,center>(K,c));  //into into the list of centers
+    //work on a center structure------------------------------
+    
+    //update other structures<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    is.insert(K);         //save the cluster index as a set
     max_dists.push_back(c.pip);   //toss in the furthest distance
     push_heap(max_dists.begin(),max_dists.end()); //update the max heap
     k++;                  //update iteration counter k
+    //update other structures<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 }
 
-//moves algorithm forward
+//moves algorithm forward by one
 void NN::next(){
+    //work on a center structure------------------------------
     pop_heap(max_dists.begin(), max_dists.end()); //send max to end
     pair<size_t,double> max = max_dists.back();   //grab it
     max_dists.pop_back();                         //remove it, no duplicates!
     center c;
-    c.i = max.first;
-    c.served = served(c.i);
+    size_t K = max.first;
     
+    //update k-1
+    
+    centers.insert(pair<size_t,center>(K,c));
+    
+    
+    
+    
+    
+    
+    
+    //*************
+    //c.pip = max_dist(c.i,c.served); //furthest point in cluster
+    //c.r       = update in next iteration
+    //cpj       = none ---no other-------
+    //cpj_alpha = none ---clusters yet---
+    //friends   = none ------------------
+    //centers.insert(c);   //push into the list of centers
+    //work on a center structure------------------------------ 
+    
+    //update other structures<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //is.insert(c.i);         //save the cluster index as a set
+    max_dists.push_back(c.pip);   //toss in the furthest distance
+    push_heap(max_dists.begin(),max_dists.end()); //update the max heap
+    k++;                  //update iteration counter k
 }
 
 void NN::print_status(){

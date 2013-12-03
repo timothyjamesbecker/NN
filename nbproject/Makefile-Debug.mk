@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/c11timer.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/nn.o \
+	${OBJECTDIR}/nn2.o \
 	${OBJECTDIR}/sb.o
 
 # Test Directory
@@ -85,6 +86,11 @@ ${OBJECTDIR}/nn.o: nbproject/Makefile-${CND_CONF}.mk nn.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn.o nn.cpp
+
+${OBJECTDIR}/nn2.o: nbproject/Makefile-${CND_CONF}.mk nn2.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2.o nn2.cpp
 
 ${OBJECTDIR}/sb.o: nbproject/Makefile-${CND_CONF}.mk sb.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -144,6 +150,19 @@ ${OBJECTDIR}/nn_nomain.o: ${OBJECTDIR}/nn.o nn.cpp
 	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn_nomain.o nn.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/nn.o ${OBJECTDIR}/nn_nomain.o;\
+	fi
+
+${OBJECTDIR}/nn2_nomain.o: ${OBJECTDIR}/nn2.o nn2.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/nn2.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2_nomain.o nn2.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/nn2.o ${OBJECTDIR}/nn2_nomain.o;\
 	fi
 
 ${OBJECTDIR}/sb_nomain.o: ${OBJECTDIR}/sb.o sb.cpp 

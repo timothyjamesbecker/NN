@@ -17,6 +17,7 @@
 #include <set>
 #include "csv_v3.hpp"
 #include "nn.h"
+#include "nn2.h"
 #include "sb.h"
 #include "c11timer.h"
 
@@ -78,9 +79,33 @@ void test_nn(size_t n, size_t d){
     cout<<*i<<endl;
 }
 
-/*Messing around with the unordered_map that has
- *constant lookup deletion,insertion
- */
+void test_nn2(size_t n, size_t d){
+    mt19937_64 r;
+    random_device rd;
+    r.seed(rd());
+    normal_distribution<double> normal_dist(0.0, 1.0);
+    vector<vector<double>> x(n,vector<double>(d));
+    for(size_t i=0;i<n;i++){
+        for(size_t j=0;j<d;j++){
+            x[i][j] = normal_dist(r);
+        }
+    }
+    NN2 nn(x);  //instantiate
+    
+    //test out the max_map
+    map<size_t,point> P;      //map with key as distance
+    for(size_t i=0; i<n; i++){
+        pair<size_t,double> p0(0,x[i][1]);  //static cluster reference
+        P.insert(line(i,p0));
+    } //retrieve index of max key
+    auto m = nn.max_line(P);
+    cout<<"P key, value pairs: "<<"\n\n";
+    for(auto &i:P){ cout<<i.first<<" "<<i.second.first<<" "<<i.second.second<<endl; }
+    cout<<endl<<"max found was: "<<m.first<<" "<<m.second.second<<endl;
+    nn.next();
+}
+
+
 void test_um(){
     vector<vector<double>> P = {{1.0,0.0},{0.0,2.0},{3.0,4.0}};
     set<size_t> served;
@@ -161,9 +186,10 @@ int main(int argc, char** argv) {
     cout << "%SUITE_STARTED%" << endl<<endl;
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     t.ping();
-    test_nn(4,5);
+    //test_nn(4,5);
     //test_um();
     //test_set();
+    test_nn2(20,5);
     t.ping();
     cout<<endl;
     cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;

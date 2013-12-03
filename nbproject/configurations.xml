@@ -8,6 +8,7 @@
       <itemPath>c11timer.h</itemPath>
       <itemPath>csv_v3.hpp</itemPath>
       <itemPath>nn.h</itemPath>
+      <itemPath>nn2.h</itemPath>
       <itemPath>rt_stats.hpp</itemPath>
       <itemPath>sb.h</itemPath>
     </logicalFolder>
@@ -20,6 +21,7 @@
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
       <itemPath>nn.cpp</itemPath>
+      <itemPath>nn2.cpp</itemPath>
       <itemPath>sb.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -87,6 +89,10 @@
       </item>
       <item path="nn.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="nn2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn2.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="rt_stats.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="sb.cpp" ex="false" tool="1" flavor2="0">
@@ -145,6 +151,10 @@
       <item path="nn.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="nn.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="nn2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nn2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="rt_stats.hpp" ex="false" tool="3" flavor2="0">
       </item>

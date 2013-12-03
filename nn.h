@@ -17,7 +17,6 @@
 using namespace std;
 
 typedef struct {
-    size_t i;                //index into the set P: P[i]
     pair<size_t,double> pip; //index into the set P: served by this cluster that is farthest
     pair<size_t,double> cpj; //index into the set P: that is the closest center
     double r,r4,r8;      //ri, 4*ri, 8*ri precomputed
@@ -67,7 +66,7 @@ public:
     size_t min_index(const size_t q, const set<size_t> Q);
     //returns the min dist index into P of q to set Q=subset(P)
     size_t min_index2(const size_t q, const set<size_t> Q);
-    set<size_t> served(size_t pi);
+    set<size_t> served(const vector<center> C);
     void first(); //sets the first step
     void next();  //moves algorithm forward k++
     void print_status();
@@ -76,11 +75,14 @@ public:
     void print_point(const size_t p);
 private:
     size_t n,d,k;     //number of rows/instances/points in the data set
-    set<size_t> is;           // is as they are added
-    set<size_t> indecies;     // the set [0,n-1]
-    vector<vector<double>> P; //original data to read from
-    vector<center> centers;   //|used for greedy permutation algorithm| = k
+    vector<vector<double>> P;   //original data to read from
+    set<size_t> indecies;       // the full index set [0,n-1]
+    set<size_t> is;             // the order that centers are selected
+    map<size_t,center> centers; //|used for greedy permutation algorithm| = k
+    
+    vector<vector<size_t>> servedby; //list for maintaining old clusters that served
     vector<pair<size_t,double>> max_dists;           //max heap for all pip_alphas
+    
     //keep all dist calculations in a fancy O(1) lookup, ins, delete heap ?
     unordered_map<pkey,double> comp_dists;
 };
