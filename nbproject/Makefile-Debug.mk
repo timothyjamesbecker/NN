@@ -75,27 +75,27 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nn: ${OBJECTFILES}
 ${OBJECTDIR}/c11timer.o: nbproject/Makefile-${CND_CONF}.mk c11timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/c11timer.o c11timer.cpp
+	$(COMPILE.cc) -g -O -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/c11timer.o c11timer.cpp
 
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -O -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/nn.o: nbproject/Makefile-${CND_CONF}.mk nn.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn.o nn.cpp
+	$(COMPILE.cc) -g -O -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn.o nn.cpp
 
 ${OBJECTDIR}/nn2.o: nbproject/Makefile-${CND_CONF}.mk nn2.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2.o nn2.cpp
+	$(COMPILE.cc) -g -O -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2.o nn2.cpp
 
 ${OBJECTDIR}/sb.o: nbproject/Makefile-${CND_CONF}.mk sb.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sb.o sb.cpp
+	$(COMPILE.cc) -g -O -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sb.o sb.cpp
 
 # Subprojects
 .build-subprojects:
@@ -110,7 +110,7 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/NN_Test.o ${OBJECTFILES:%.o=%_nomain.o
 ${TESTDIR}/tests/NN_Test.o: tests/NN_Test.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -std=c++11 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/NN_Test.o tests/NN_Test.cpp
+	$(COMPILE.cc) -g -O -I. -std=c++11 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/NN_Test.o tests/NN_Test.cpp
 
 
 ${OBJECTDIR}/c11timer_nomain.o: ${OBJECTDIR}/c11timer.o c11timer.cpp 
@@ -121,7 +121,7 @@ ${OBJECTDIR}/c11timer_nomain.o: ${OBJECTDIR}/c11timer.o c11timer.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/c11timer_nomain.o c11timer.cpp;\
+	    $(COMPILE.cc) -g -O -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/c11timer_nomain.o c11timer.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/c11timer.o ${OBJECTDIR}/c11timer_nomain.o;\
 	fi
@@ -134,7 +134,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.cpp;\
+	    $(COMPILE.cc) -g -O -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi
@@ -147,7 +147,7 @@ ${OBJECTDIR}/nn_nomain.o: ${OBJECTDIR}/nn.o nn.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn_nomain.o nn.cpp;\
+	    $(COMPILE.cc) -g -O -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn_nomain.o nn.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/nn.o ${OBJECTDIR}/nn_nomain.o;\
 	fi
@@ -160,7 +160,7 @@ ${OBJECTDIR}/nn2_nomain.o: ${OBJECTDIR}/nn2.o nn2.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2_nomain.o nn2.cpp;\
+	    $(COMPILE.cc) -g -O -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nn2_nomain.o nn2.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/nn2.o ${OBJECTDIR}/nn2_nomain.o;\
 	fi
@@ -173,7 +173,7 @@ ${OBJECTDIR}/sb_nomain.o: ${OBJECTDIR}/sb.o sb.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sb_nomain.o sb.cpp;\
+	    $(COMPILE.cc) -g -O -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sb_nomain.o sb.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/sb.o ${OBJECTDIR}/sb_nomain.o;\
 	fi

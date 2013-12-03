@@ -49,6 +49,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <developmentMode>2</developmentMode>
           <architecture>2</architecture>
           <standard>8</standard>
         </ccTool>
@@ -111,11 +112,14 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>3</standard>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <architecture>2</architecture>
           <standard>8</standard>
+          <warningLevel>0</warningLevel>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -124,6 +128,9 @@
           <developmentMode>5</developmentMode>
           <architecture>2</architecture>
         </asmTool>
+        <linkerTool>
+          <commandLine>-lpthread</commandLine>
+        </linkerTool>
       </compileType>
       <item path="c11timer.cpp" ex="false" tool="1" flavor2="0">
       </item>

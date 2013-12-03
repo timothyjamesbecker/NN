@@ -49,7 +49,7 @@ void test_2d() {
     //sb.print_dist_heaps();
 }
 
-void test_nn(size_t n, size_t d){
+void test_nn(size_t n, size_t d, C11Timer t){
     mt19937_64 r;
     random_device rd;
     r.seed(rd());
@@ -79,7 +79,7 @@ void test_nn(size_t n, size_t d){
     cout<<*i<<endl;
 }
 
-void test_nn2(size_t n, size_t d){
+void test_nn2(size_t n, size_t d, C11Timer t){
     mt19937_64 r;
     random_device rd;
     r.seed(rd());
@@ -90,10 +90,12 @@ void test_nn2(size_t n, size_t d){
             x[i][j] = normal_dist(r);
         }
     }
+    cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
+    t.ping();
     NN2 nn(x,n);  //instantiate
     
     //test out the max_map
-    map<size_t,point> P;      //map with key as distance
+    /*map<size_t,point> P;      //map with key as distance
     for(size_t i=0; i<n; i++){
         pair<size_t,double> p0(0,x[i][1]);  //static cluster reference
         P.insert(line(i,p0));
@@ -102,7 +104,11 @@ void test_nn2(size_t n, size_t d){
     cout<<"P key, value pairs: "<<"\n\n";
     for(auto &i:P){ cout<<i.first<<" "<<i.second.first<<" "<<i.second.second<<endl; }
     cout<<endl<<"max found was: "<<m.first<<" "<<m.second.second<<endl;
+    */
     nn.next();
+    t.ping();
+    cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;
+    nn.print_P();
 }
 
 
@@ -184,14 +190,10 @@ int main(int argc, char** argv) {
     cout<<endl;
     cout << "%SUITE_STARTING% NN_Test" << endl;
     cout << "%SUITE_STARTED%" << endl<<endl;
-    cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
-    t.ping();
     //test_nn(4,5);
     //test_um();
     //test_set();
-    test_nn2(1000,5);
-    t.ping();
+    test_nn2(1000,30,t);
     cout<<endl;
-    cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;
     cout << "%SUITE_FINISHED% time=0" << endl;
 }
