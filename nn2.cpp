@@ -15,7 +15,7 @@
 
 NN2::NN2(const vector<vector<double>> M, size_t m) {
     P = M; //reference to data matrix
-    i = m; //the number of clusters to make
+    K = m; //the number of clusters to make
     n = P.size();    //number of points in the set
     d = P[0].size(); //need the same dim
     k = 1;           //start empty, still have to permute to pick first 
@@ -74,6 +74,9 @@ double NN2::dist(const size_t p1, const size_t p2){
     return (double)sqrt(sum);
 }
 
+/* computes the closest cluster for every point
+ * saves as point, cluster, distance to a map with point as the key
+ */
 map<size_t,point> NN2::min_c_dist(const set<size_t> C, const set<size_t> P){
     map<size_t,point> D;
     for(auto &p: P){
@@ -114,7 +117,7 @@ line NN2::max_line(const map<size_t,point> M){
 }
 
 void NN2::next(){
-    while(i <= k){//general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
+    while(k <= K){//general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         //setup for general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         auto r = max_line(ps_alphas);        // get max alpha index
         ps.erase(r.first);                   //remove pi from points

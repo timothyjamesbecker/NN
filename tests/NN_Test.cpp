@@ -90,7 +90,7 @@ void test_nn2(size_t n, size_t d){
             x[i][j] = normal_dist(r);
         }
     }
-    NN2 nn(x);  //instantiate
+    NN2 nn(x,n);  //instantiate
     
     //test out the max_map
     map<size_t,point> P;      //map with key as distance
@@ -189,7 +189,7 @@ int main(int argc, char** argv) {
     //test_nn(4,5);
     //test_um();
     //test_set();
-    test_nn2(20,5);
+    test_nn2(1000,5);
     t.ping();
     cout<<endl;
     cout << "%TEST_FINISHED% time="<<t.ms()<<"ms test_2d (NN_Test)" << endl;

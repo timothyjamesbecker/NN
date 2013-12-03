@@ -18,7 +18,7 @@ typedef pair<size_t,vector<point>> cluster;
 
 class NN2 {
 public:
-    NN2(const vector<vector<double>> M);
+    NN2(const vector<vector<double>> M, size_t m);
     NN2(const NN2& orig);
     virtual ~NN2();
     size_t r_gen(size_t m);
@@ -36,7 +36,7 @@ public:
     void print_cs();
     void print_ps_alphas();
 private:
-    size_t n,d,k,i;     
+    size_t n,d,K,k;     
     vector<vector<double>> P;      // original data to read from
     set<size_t> ps;                // point indecies, start full
     set<size_t> cs;                //center indecies, start empty
