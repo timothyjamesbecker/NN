@@ -24,9 +24,9 @@ NN2::NN2(const vector<vector<double>> M, size_t K) {
     
     //setup for first center: k=1 <<<<<<<<<<<<
     auto r = r_gen(n); //randomly pick p1
-    ps.erase(r);       //remove pi from points
     cs.insert(r);      //add pi to centers
     ps_alphas = min_c_dist(cs, ps);
+    //ps.erase(r);       //remove pi from points
     k++;
     //setup for initial<<<<<<<<<<<<<<<<<<<<<<<
 }
@@ -120,9 +120,9 @@ void NN2::next(){ //now you keep calling  next() k times...
     while(k <= K){//general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         //setup for general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         auto r = max_line(ps_alphas);        // get max alpha index
-        ps.erase(r.first);                   //remove pi from points
         cs.insert(r.first);                  //add pi to centers
-        ps_alphas = min_c_dist(cs, ps);      //update the clusters                            
+        ps_alphas = min_c_dist(cs, ps);      //update the clusters
+        //ps.erase(r.first);                   //remove pi from points
         k++;
     }
     //setup for general<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
@@ -143,7 +143,7 @@ void NN2::print_dim(){
 }
 
 void NN2::print_ps(){
-    cout<<"ps: ";
+    //cout<<"ps: ";
     for(auto &i:ps){ cout<<i<<" "; }
     cout<<endl;
 }
@@ -155,5 +155,9 @@ void NN2::print_cs(){
 }
 
 void NN2::print_ps_alphas(){
+    //index of point, index of cluster, distance
+    for(auto &i:ps_alphas){
+        cout<<i.first<<" "<<i.second.first<<" "<<i.second.second<<endl;
+    }
     
 }

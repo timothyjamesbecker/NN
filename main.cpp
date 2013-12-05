@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     NN2 nn(x,k);   //start it up
     nn.next();     //get clusters
     nn.print_cs(); //print out the permutation in order
-    
+    nn.print_ps_alphas(); //print point cluster associations
     return 0;
 }
 
