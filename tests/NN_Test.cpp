@@ -92,7 +92,7 @@ void test_nn2(size_t n, size_t d, C11Timer t){
     }
     cout << "%TEST_STARTED% test1 (NN_Test)" << endl;
     t.ping();
-    NN2 nn(x,n);  //instantiate
+    NN2 nn(x,5);  //instantiate
     
     //test out the max_map
     /*map<size_t,point> P;      //map with key as distance

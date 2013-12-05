@@ -8,6 +8,7 @@
 #ifndef NN2_H
 #define	NN2_H
 #include <vector>
+#include <map>
 #include <set>
 
 using namespace std;
@@ -18,7 +19,7 @@ typedef pair<size_t,vector<point>> cluster;
 
 class NN2 {
 public:
-    NN2(const vector<vector<double>> M, size_t m);
+    NN2(const vector<vector<double>> M, size_t K);
     NN2(const NN2& orig);
     virtual ~NN2();
     size_t r_gen(size_t m);
@@ -40,7 +41,7 @@ private:
     vector<vector<double>> P;      // original data to read from
     set<size_t> ps;                // point indecies, start full
     set<size_t> cs;                //center indecies, start empty
-    map<size_t,vector<point>> c_s; 
+    map<size_t,vector<point>> c_s; //clusters
     map<size_t,point> ps_alphas;   // point index, cluster index, distance
     vector<point> max_dists;       // cache all points calculations
 };

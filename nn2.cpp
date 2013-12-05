@@ -13,11 +13,11 @@
 #include <limits>
 #include "nn2.h"
 
-NN2::NN2(const vector<vector<double>> M, size_t m) {
+NN2::NN2(const vector<vector<double>> M, size_t K) {
     P = M; //reference to data matrix
-    K = m; //the number of clusters to make
-    n = P.size();    //number of points in the set
-    d = P[0].size(); //need the same dim
+    this->K = K; //the number of clusters to make
+    n = M.size();    //number of points in the set
+    d = M[0].size(); //need the same dim
     k = 1;           //start empty, still have to permute to pick first 
     for(size_t i=0; i<n; i++){ ps.insert(i); }  //p_s starts with all P
     //--------------------------------------------------c_s starts empty
@@ -116,7 +116,7 @@ line NN2::max_line(const map<size_t,point> M){
                     return p1.second.second < p2.second.second; });      
 }
 
-void NN2::next(){
+void NN2::next(){ //now you keep calling  next() k times...
     while(k <= K){//general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         //setup for general center: k>1 <<<<<<<<<<<<<<<<<<<<<<<<<<<
         auto r = max_line(ps_alphas);        // get max alpha index
@@ -125,7 +125,7 @@ void NN2::next(){
         ps_alphas = min_c_dist(cs, ps);      //update the clusters                            
         k++;
     }
-    //setup for general<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    
+    //setup for general<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 }
 
 void NN2::print_P(){
@@ -143,13 +143,13 @@ void NN2::print_dim(){
 }
 
 void NN2::print_ps(){
-    cout<<"p_s: "<<endl;
+    cout<<"ps: ";
     for(auto &i:ps){ cout<<i<<" "; }
     cout<<endl;
 }
 
 void NN2::print_cs(){
-    cout<<"c_s: "<<endl;
+    //cout<<"cs: ";
     for(auto &i:cs){ cout<<i<<" "; }
     cout<<endl;    
 }
