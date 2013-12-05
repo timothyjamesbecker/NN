@@ -119,11 +119,7 @@ c_colors.append(rwhite()) #clusters draw white/grey?
 c_map = {} #color map
 while RT and (frame < f): #Real-Time Loop=> 'esc' key turns off
     p.stop()
-    imc = np.zeros((height,width,4), np.uint8)
-    ims = filters.invert(imc)
-    #check for background toggle
-    if(IM): draw,diag = imc,black #toggles viewing mode
-    else:   draw,diag = ims,white #between input+overlay && overlay
+    draw = np.zeros((height,width,4), np.uint8)
     
     #draw points here)))))))))))))))))))))))))))))))))))))))))))))))
     if(PO):
@@ -154,7 +150,11 @@ while RT and (frame < f): #Real-Time Loop=> 'esc' key turns off
     source.win_diag(draw,n,p.diff(),k,diag)
     p.start()
     #.......................drawing................................
-    
+
+    #check for background toggle
+    if(IM): draw,diag = draw,black#toggles viewing mode
+    else:   draw,diag = filters.invert(draw),black #between input+overlay && overlay
+        
     #Sentel Loop Control Logic============================
     K = cv2.waitKey(60)           #wait period => FPS requested
     if K == KEY_ESC: break        #'esc' key exit
