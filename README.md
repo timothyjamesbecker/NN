@@ -6,8 +6,7 @@ impementations of: Clarkson's:sb(S), Har-Peled's r-nets, and the basic Gonzalez 
 
 Notes:
 Files everywhere... Was hacking at various algorithms, gave up, moved on and then created several stiches and bindings
-=======================================================================================================================
-before retooling some OpenCV bindings to visualize what starts as noise and becomes Vornoi Cells...
+before building the  OpenCV visualizer that looks like noise at first but as n->1000: becomes Vornoi Cells...
 =======================================================================================================================
 
 
