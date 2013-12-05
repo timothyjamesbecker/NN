@@ -86,7 +86,7 @@ k,n = 1,0
 #----------------------------------------------------
 #starting arguments are the maximums
 #starting data is for max dimension but with zeros...
-args = ['./nn',str(k),'2',str(n)] #just intial
+args = ['./greedy_perm',str(k),'2',str(n)] #just intial
 points = []
 #----------------------------------------------------
 #video params for setting up display
